@@ -12,9 +12,7 @@ namespace IoTHubTPMLib
 {
     public static class AzureIoTHub
     {
-        //If Not Using TPM:
-        public static string DeviceConnectionString { get; set; } =
-            "HostName=<HostName.usr.azure-devices.net;DeviceId=MyDevice;SharedAccessKey=XXXXXX";
+
 
         //
         // This sample assumes the device has been connected to Azure with the IoT Dashboard
@@ -23,6 +21,9 @@ namespace IoTHubTPMLib
 
 
 
+        //If Not Using TPM:
+        public static string DeviceConnectionString { get; set; } =
+            "HostName=<HostName.usr.azure-devices.net;DeviceId=MyDevice;SharedAccessKey=XXXXXX";
 
         public static async Task SendDeviceToCloudMessageAsyncNotTPM(string msg)
         {
