@@ -32,6 +32,7 @@ namespace Win10IoTCoreIoTHubLabs
             pinValue = GpioPinValue.Low;
             OutPin.Write(pinValue);
             Debug.WriteLine("LED Off");
+
         }
 
 #if LESSON2

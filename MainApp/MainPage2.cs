@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using IoTHubTPMLib;
 using System.Diagnostics;
-using Sensors.Dht;
+//using IoTHubTPMLib;
+//using Sensors.Dht;
 
 namespace Win10IoTCoreIoTHubLabs
 {
     public sealed partial class MainPage : Page
     {
-#if (!LESSON1) && (!LESSON2)
+#if (!LESSON1) && (!LESSON2) && (!LESSON0)
         private async Task Send(int num)
         {
             string jsn =  "{\"num\":" + num.ToString() + "}";

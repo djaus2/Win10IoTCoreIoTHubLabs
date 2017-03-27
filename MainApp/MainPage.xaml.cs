@@ -15,12 +15,13 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Win10IoTCoreIoTHubLabs
 {
-    
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -30,35 +31,55 @@ namespace Win10IoTCoreIoTHubLabs
 
         int numLoops = 20;
 
+        private SolidColorBrush redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
+        private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
+
         public MainPage()
         {
+            this.InitializeComponent();
             // ...
-
+#if !LESSON0
             IoTGPIO.InitGPIO();
 #if LESSON8 || LESSON9
             InitDHT22();
-
 #endif
+#endif
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            int i = 0;
+            i++;
+#if !LESSON0
             if (IoTGPIO.OutPin != null)
             {
+#endif
 
-                var t = Task.Run(() => Loop());
-                t.Wait();
+            var t = Task.Run(() => Loop());
+#if !LESSON0
             }
+#endif
 
-            Application.Current.Exit();
         }
+
 
         public async Task Loop()
         {
-            for (int i = 0; i <  numLoops; i++)
+            for (int i = 0; i < numLoops; i++)
             {
+                await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    LED.Fill = redBrush;
+                });
 
-#if (!LESSON2) && (!LESSON5) && (!LESSON6)  && (!LESSON7)
+#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7) && (!LESSON0)
                 IoTGPIO.LEDOn();
 #endif
+#if LESSON0
+                //Periodic flash simulated LED
 
-#if LESSON1
+#elif LESSON1
                 //Periodic Flash LED only
 #elif LESSON2
                 //LED on when input is hi.
@@ -95,14 +116,23 @@ namespace Win10IoTCoreIoTHubLabs
                 await System.Threading.Tasks.Task.Delay(TimeSpan.FromMilliseconds(400));
 
                 ///////////////
-
-#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7)
+                await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    LED.Fill = grayBrush;
+                });
+#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7) && (!LESSON0)
                 IoTGPIO.LEDOff();
 #endif
                 //Pause 600 mS for all
                 await System.Threading.Tasks.Task.Delay(TimeSpan.FromMilliseconds(600));
 
             }
+
+            Application.Current.Exit();
         }
+
+
     }
+
 }
