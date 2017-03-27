@@ -12,7 +12,7 @@ namespace Win10IoTCoreIoTHubLabs
 {
     public sealed partial class MainPage : Page
     {
-#if (!LESSON1) && (!LESSON2) && (!LESSON0)
+#if (!LESSON1_1) && (!LESSON2) && (!LESSON1_0)
         private async Task Send(int num)
         {
             string jsn =  "{\"num\":" + num.ToString() + "}";

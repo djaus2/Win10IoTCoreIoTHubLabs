@@ -29,7 +29,7 @@ namespace Win10IoTCoreIoTHubLabs
     {
 
 
-        int numLoops = 20;
+       
 
         private SolidColorBrush redBrush = new SolidColorBrush(Windows.UI.Colors.Red);
         private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
@@ -38,7 +38,7 @@ namespace Win10IoTCoreIoTHubLabs
         {
             this.InitializeComponent();
             // ...
-#if !LESSON0
+#if !LESSON1_0
             IoTGPIO.InitGPIO();
 #if LESSON8 || LESSON9
             InitDHT22();
@@ -50,19 +50,20 @@ namespace Win10IoTCoreIoTHubLabs
         {
             int i = 0;
             i++;
-#if !LESSON0
+#if !LESSON1_0
             if (IoTGPIO.OutPin != null)
             {
 #endif
 
             var t = Task.Run(() => Loop());
-#if !LESSON0
+#if !LESSON1_0
             }
 #endif
 
         }
 
 
+        int numLoops = 20;
         public async Task Loop()
         {
             for (int i = 0; i < numLoops; i++)
@@ -73,13 +74,13 @@ namespace Win10IoTCoreIoTHubLabs
                     LED.Fill = redBrush;
                 });
 
-#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7) && (!LESSON0)
+#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7) && (!LESSON1_0)
                 IoTGPIO.LEDOn();
 #endif
-#if LESSON0
+#if LESSON1_0
                 //Periodic flash simulated LED
 
-#elif LESSON1
+#elif LESSON1_1
                 //Periodic Flash LED only
 #elif LESSON2
                 //LED on when input is hi.
@@ -121,7 +122,7 @@ namespace Win10IoTCoreIoTHubLabs
                 {
                     LED.Fill = grayBrush;
                 });
-#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7) && (!LESSON0)
+#if (!LESSON2) && (!LESSON5) && (!LESSON6) && (!LESSON7) && (!LESSON1_0)
                 IoTGPIO.LEDOff();
 #endif
                 //Pause 600 mS for all

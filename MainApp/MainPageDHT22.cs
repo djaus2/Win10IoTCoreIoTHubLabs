@@ -15,7 +15,7 @@ namespace Win10IoTCoreIoTHubLabs
     public sealed partial class MainPage
     {
         //Source: https://www.hackster.io/porrey/dht11-dht22-temperature-sensor-077790
-
+#if LESSON6 || LESSON7
         GpioPin OneWirePin = null;
         const int DHTPIN = 17;
         private IDht _dht = null;
@@ -308,5 +308,7 @@ namespace Win10IoTCoreIoTHubLabs
                 return returnValue;
             }
         }
+#endif
+
     }
 }
