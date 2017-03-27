@@ -9,15 +9,11 @@
 
 
     <Grid RenderTransformOrigin="0.257,0.127" >
-        <!-- Image x:Name="LEDImage" Source="hardware_ready.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="300" /-->
         <Grid.Background>
             <ImageBrush ImageSource ="hardware_ready.png" Stretch="None"></ImageBrush>
         </Grid.Background>
 
-
-        <!-- StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.815,0.454" Margin="56,0,0,0" -->
-            <Ellipse x:Name="LED" Fill="LightGray" Stroke="White" Width="60" Height="70" Margin="78,10,222,560" RenderTransformOrigin="-0.22,-1.273"/>
-   
-
+        <Ellipse x:Name="LED" Fill="LightGray" Stroke="White" Width="60" Height="70" Margin="78,10,222,560" RenderTransformOrigin="-0.22,-1.273"/>
+ 
     </Grid>
 </Page>
